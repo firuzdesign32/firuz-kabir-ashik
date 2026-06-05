@@ -14,6 +14,9 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
     notFound();
   }
 
+  const tags = (portfolio.tags as string[]) || [];
+  const galleryImages = (portfolio.galleryImages as string[]) || [];
+
   return (
     <main className="min-h-screen bg-bg">
       {/* Hero Cover */}
@@ -60,7 +63,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
         <div>
           <h3 className="text-xl font-bold text-text mb-6 border-b border-border pb-4">Tags</h3>
           <div className="flex flex-wrap gap-3">
-            {portfolio.tags.map((tag: string) => (
+            {tags.map((tag: string) => (
               <span key={tag} className="bg-surface-2 border border-border px-4 py-2 rounded-full text-sm text-text-muted">
                 {tag}
               </span>
@@ -70,10 +73,10 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
       </div>
 
       {/* Gallery */}
-      {portfolio.galleryImages.length > 0 && (
+      {galleryImages.length > 0 && (
         <div className="max-w-7xl mx-auto px-6 pb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {portfolio.galleryImages.map((img: string, i: number) => (
+            {galleryImages.map((img: string, i: number) => (
               <div key={i} className={`relative w-full ${i % 3 === 0 ? 'md:col-span-2 h-[600px]' : 'h-[400px]'} rounded-2xl overflow-hidden bg-surface-2`}>
                 <Image src={img} alt={`Gallery image ${i + 1}`} fill className="object-cover" />
               </div>

@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -49,13 +49,13 @@ model Portfolio {
   category      String
   thumbnail     String
   coverImage    String
-  galleryImages String[]
-  videos        String[]
-  gifs          String[]
-  description   String   @db.Text
+  galleryImages Json?
+  videos        Json?
+  gifs          Json?
+  description   String
   clientName    String?
   projectDate   DateTime?
-  tags          String[]
+  tags          Json?
   featured      Boolean  @default(false)
   status        Status   @default(DRAFT)
   displayOrder  Int      @default(0)
@@ -69,13 +69,13 @@ model CaseStudy {
   category        String
   clientName      String?
   industry        String?
-  challenge       String   @db.Text
-  solution        String   @db.Text
-  process         String   @db.Text
-  results         String   @db.Text
-  media           String[]
+  challenge       String
+  solution        String
+  process         String
+  results         String
+  media           Json?
   metaTitle       String?
-  metaDescription String?  @db.Text
+  metaDescription String?
   ogImage         String?
   createdAt       DateTime @default(now())
 }
@@ -85,10 +85,10 @@ model Product {
   name            String
   slug            String      @unique
   thumbnail       String
-  gallery         String[]
+  gallery         Json?
   price           Float
   discountPrice   Float?
-  description     String      @db.Text
+  description     String
   category        String
   productFileUrl  String
   previewFileUrl  String?
@@ -127,7 +127,7 @@ model Coupon {
 model SiteSettings {
   id    String @id @default(cuid())
   key   String @unique
-  value String @db.Text
+  value String
 }
 
 model MediaLibrary {
