@@ -28,10 +28,22 @@ export default function HeroSection({ headline, subheadline }: HeroSectionProps)
 
   return (
     <section className="relative w-full h-screen flex flex-col items-center justify-center bg-bg overflow-hidden pt-20">
-      {/* Background Particles / Glow */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-accent opacity-20 blur-[120px] rounded-full" />
-        <div className="absolute top-1/2 -left-20 w-72 h-72 bg-accent-hover opacity-10 blur-[100px] rounded-full" />
+      {/* Background Video (YouTube) */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <iframe
+          src="https://www.youtube.com/embed/cGTbtGDLosM?autoplay=1&mute=1&loop=1&playlist=cGTbtGDLosM&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+          allow="autoplay; encrypted-media"
+          frameBorder="0"
+          style={{
+            width: '100vw',
+            height: '56.25vw', /* 16:9 Aspect Ratio */
+            minHeight: '100vh',
+            minWidth: '177.77vh', /* 16:9 Aspect Ratio */
+          }}
+        />
+        {/* Dark overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-[#0A0A0A]/70" />
       </div>
 
       <motion.div 
