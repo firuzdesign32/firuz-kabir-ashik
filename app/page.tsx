@@ -1,9 +1,11 @@
 import prisma from '@/lib/prisma';
+import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ServicesSection from '@/components/ServicesSection';
 import PortfolioPreview from '@/components/PortfolioPreview';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import PricingSection from '@/components/PricingSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
@@ -23,22 +25,26 @@ export default async function Home() {
   });
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between overflow-hidden">
-      <HeroSection headline={settings['hero_headline']} subheadline={settings['hero_subheadline']} />
-      <AboutSection 
-        bio={settings['about_bio']}
-        years={settings['about_years_exp']}
-        projects={settings['about_projects_completed']}
-        clients={settings['about_happy_clients']}
-      />
-      <ServicesSection />
-      <PortfolioPreview items={featuredPortfolio} />
-      <TestimonialsSection />
-      <ContactSection email={settings['contact_email']} />
-      <Footer 
-        instagram={settings['social_instagram']} 
-        behance={settings['social_behance']} 
-      />
-    </main>
+    <>
+      <Navbar />
+      <main className="flex min-h-screen flex-col items-center justify-between overflow-hidden">
+        <HeroSection headline={settings['hero_headline']} subheadline={settings['hero_subheadline']} />
+        <AboutSection 
+          bio={settings['about_bio']}
+          years={settings['about_years_exp']}
+          projects={settings['about_projects_completed']}
+          clients={settings['about_happy_clients']}
+        />
+        <ServicesSection />
+        <PortfolioPreview items={featuredPortfolio} />
+        <TestimonialsSection />
+        <PricingSection />
+        <ContactSection email={settings['contact_email']} />
+        <Footer 
+          instagram={settings['social_instagram']} 
+          behance={settings['social_behance']} 
+        />
+      </main>
+    </>
   );
 }
