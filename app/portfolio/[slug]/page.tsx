@@ -4,9 +4,10 @@ import { notFound } from 'next/navigation';
 
 export const revalidate = 60;
 
-export default async function PortfolioDetailPage({ params }: { params: { slug: string } }) {
+export default async function PortfolioDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const portfolio = await prisma.portfolio.findUnique({
-    where: { slug: params.slug, status: 'PUBLISHED' }
+    where: { slug, status: 'PUBLISHED' }
   });
 
   if (!portfolio) {
