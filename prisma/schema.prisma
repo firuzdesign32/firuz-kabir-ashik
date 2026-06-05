@@ -139,3 +139,14 @@ model MediaLibrary {
   folder    String?
   createdAt DateTime @default(now())
 }
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+

@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Image as ImageIcon, ShoppingBag, Settings, LogOut, FileText, Ticket } from "lucide-react";
+import { LayoutDashboard, Image as ImageIcon, ShoppingBag, Settings, LogOut, FileText, Ticket, MessageSquare } from "lucide-react";
 
 export default async function AdminLayout({
   children,
@@ -53,6 +53,11 @@ export default async function AdminLayout({
             <li>
               <Link href="/admin/orders" className="flex items-center gap-3 px-3 py-2 text-text-muted hover:text-white hover:bg-surface-2 rounded-lg transition-colors">
                 <Ticket className="w-5 h-5" /> Orders
+              </Link>
+            </li>
+            <li>
+              <Link href="/admin/messages" className="flex items-center gap-3 px-3 py-2 text-text-muted hover:text-white hover:bg-surface-2 rounded-lg transition-colors">
+                <MessageSquare className="w-5 h-5" /> Customer Messages
               </Link>
             </li>
             <li>

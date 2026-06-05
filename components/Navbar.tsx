@@ -29,7 +29,7 @@ export default function Navbar() {
     { label: "Portfolio", href: "/portfolio" },
     { label: "Pricing", href: "/#pricing" },
     { label: "Shop", href: "/store" },
-    { label: "Contact", href: "/#contact" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -76,7 +76,7 @@ export default function Navbar() {
         {/* Action Button */}
         <div className="hidden md:block">
           <Link
-            href="/#contact"
+            href="/contact"
             className="bg-accent hover:bg-accent-hover text-white text-sm font-medium px-6 py-2.5 rounded-full transition-all hover:scale-105 inline-block"
           >
             Book A Meeting
@@ -113,7 +113,7 @@ export default function Navbar() {
           </nav>
           <div className="pb-8">
             <Link
-              href="/#contact"
+              href="/contact"
               onClick={() => setIsOpen(false)}
               className="w-full text-center bg-accent hover:bg-accent-hover text-white py-4 rounded-full font-medium block transition-all"
             >
