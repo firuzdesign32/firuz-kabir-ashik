@@ -62,24 +62,6 @@ model Portfolio {
   createdAt     DateTime @default(now())
 }
 
-model CaseStudy {
-  id              String   @id @default(cuid())
-  title           String
-  slug            String   @unique
-  category        String
-  clientName      String?
-  industry        String?
-  challenge       String
-  solution        String
-  process         String
-  results         String
-  media           Json?
-  metaTitle       String?
-  metaDescription String?
-  ogImage         String?
-  createdAt       DateTime @default(now())
-}
-
 model Product {
   id              String      @id @default(cuid())
   name            String

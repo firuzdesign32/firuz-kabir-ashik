@@ -15,6 +15,9 @@ interface PortfolioItem {
   featured: boolean;
   status: "PUBLISHED" | "DRAFT";
   displayOrder: number;
+  tags?: string[];
+  galleryImages?: string[];
+  videos?: string[];
 }
 
 export default function AdminPortfolioManager() {
@@ -282,6 +285,144 @@ export default function AdminPortfolioManager() {
                   rows={4}
                   className="w-full bg-surface-2 border border-border p-3 rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors"
                 />
+              </div>
+
+              {/* Tags */}
+              <div>
+                <label className="block text-sm font-medium text-text-muted mb-2">Tags (comma-separated)</label>
+                <input
+                  type="text"
+                  placeholder="3D Modeling, Motion Design, CGI"
+                  value={activeItem.tags ? (activeItem.tags as string[]).join(", ") : ""}
+                  onChange={(e) => setActiveItem({ ...activeItem, tags: e.target.value.split(",").map(t => t.trim()).filter(Boolean) })}
+                  className="w-full bg-surface-2 border border-border p-3 rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors"
+                />
+              </div>
+
+              {/* Gallery Images Manager */}
+              <div className="space-y-3">
+                <label className="block text-sm font-medium text-text-muted">Gallery Images</label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="https://example.com/image.jpg"
+                    id="newGalleryImage"
+                    className="flex-1 bg-surface-2 border border-border p-3 rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        const input = e.currentTarget;
+                        const url = input.value.trim();
+                        if (url) {
+                          const current = (activeItem.galleryImages as string[]) || [];
+                          setActiveItem({ ...activeItem, galleryImages: [...current, url] });
+                          input.value = "";
+                        }
+                      }
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const input = document.getElementById("newGalleryImage") as HTMLInputElement;
+                      const url = input?.value.trim();
+                      if (url) {
+                        const current = (activeItem.galleryImages as string[]) || [];
+                        setActiveItem({ ...activeItem, galleryImages: [...current, url] });
+                        input.value = "";
+                      }
+                    }}
+                    className="bg-accent hover:bg-accent-hover px-4 rounded-xl text-white font-medium text-sm transition-colors cursor-pointer"
+                  >
+                    Add
+                  </button>
+                </div>
+                
+                {/* Images List */}
+                <div className="grid grid-cols-4 gap-3 max-h-40 overflow-y-auto p-2 bg-bg rounded-xl border border-border">
+                  {((activeItem.galleryImages as string[]) || []).length === 0 ? (
+                    <span className="col-span-4 text-xs text-text-muted p-2 text-center">No gallery images added yet.</span>
+                  ) : (
+                    ((activeItem.galleryImages as string[]) || []).map((img, idx) => (
+                      <div key={idx} className="relative aspect-video rounded-lg overflow-hidden border border-border group bg-surface">
+                        <img src={img} alt="" className="w-full h-full object-cover" />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const current = (activeItem.galleryImages as string[]) || [];
+                            setActiveItem({ ...activeItem, galleryImages: current.filter((_, i) => i !== idx) });
+                          }}
+                          className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center text-red-500 font-bold transition-all text-xs cursor-pointer"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+
+              {/* Videos Manager */}
+              <div className="space-y-3">
+                <label className="block text-sm font-medium text-text-muted">Videos (YouTube embed or video links)</label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="https://www.youtube.com/embed/cGTbtGDLosM"
+                    id="newVideo"
+                    className="flex-1 bg-surface-2 border border-border p-3 rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        const input = e.currentTarget;
+                        const url = input.value.trim();
+                        if (url) {
+                          const current = (activeItem.videos as string[]) || [];
+                          setActiveItem({ ...activeItem, videos: [...current, url] });
+                          input.value = "";
+                        }
+                      }
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const input = document.getElementById("newVideo") as HTMLInputElement;
+                      const url = input?.value.trim();
+                      if (url) {
+                        const current = (activeItem.videos as string[]) || [];
+                        setActiveItem({ ...activeItem, videos: [...current, url] });
+                        input.value = "";
+                      }
+                    }}
+                    className="bg-accent hover:bg-accent-hover px-4 rounded-xl text-white font-medium text-sm transition-colors cursor-pointer"
+                  >
+                    Add
+                  </button>
+                </div>
+                
+                {/* Videos List */}
+                <div className="space-y-2 max-h-40 overflow-y-auto p-2 bg-bg rounded-xl border border-border">
+                  {((activeItem.videos as string[]) || []).length === 0 ? (
+                    <span className="block text-xs text-text-muted p-2 text-center">No videos added yet.</span>
+                  ) : (
+                    ((activeItem.videos as string[]) || []).map((vid, idx) => (
+                      <div key={idx} className="flex items-center justify-between bg-surface p-2 rounded-lg border border-border text-xs">
+                        <span className="truncate text-text font-mono max-w-[80%]">{vid}</span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const current = (activeItem.videos as string[]) || [];
+                            setActiveItem({ ...activeItem, videos: current.filter((_, i) => i !== idx) });
+                          }}
+                          className="text-red-500 hover:text-red-400 font-semibold px-2 py-1 cursor-pointer"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
               </div>
 
               <div className="grid grid-cols-3 gap-4 items-center pt-2">

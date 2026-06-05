@@ -13,14 +13,19 @@ export default function AboutSection({ bio, years, projects, clients }: AboutSec
   return (
     <section className="w-full py-24 bg-surface px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        {/* Profile Image placeholder */}
+        {/* Profile Image */}
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="w-full h-[500px] bg-surface-2 rounded-2xl border border-border flex items-center justify-center overflow-hidden"
+          className="w-full h-[500px] bg-surface-2 rounded-2xl border border-border relative overflow-hidden group shadow-2xl"
         >
-          <div className="text-text-muted">Profile Image Placeholder</div>
+          <img 
+            src="/avatar.jpg" 
+            alt="Firuz Kabir Ashik" 
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </motion.div>
 
         <motion.div 

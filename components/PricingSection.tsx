@@ -189,7 +189,7 @@ export default function PricingSection() {
                 </div>
 
                 <div className="flex items-baseline gap-1.5 mb-8">
-                  <span className="text-4xl md:text-5xl font-display font-extrabold text-white">
+                  <span className="text-4xl md:text-5xl font-sans font-bold text-white">
                     {plan.price}
                   </span>
                   <span className="text-sm text-text-muted font-medium">{plan.period}</span>
@@ -209,7 +209,7 @@ export default function PricingSection() {
 
                 {/* CTA Button */}
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className={`w-full py-3.5 rounded-xl text-center font-medium transition-all ${
                     plan.featured
                       ? "bg-accent hover:bg-accent-hover text-white hover:shadow-[0_0_20px_rgba(8,102,255,0.4)]"

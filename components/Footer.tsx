@@ -17,8 +17,8 @@ export default function Footer({ instagram, behance }: FooterProps) {
 
         <div className="flex gap-8">
           <Link href="/portfolio" className="text-text-muted hover:text-accent transition-colors">Portfolio</Link>
-          <Link href="/case-studies" className="text-text-muted hover:text-accent transition-colors">Case Studies</Link>
           <Link href="/store" className="text-text-muted hover:text-accent transition-colors">Store</Link>
+          <Link href="/contact" className="text-text-muted hover:text-accent transition-colors">Contact</Link>
           <Link href="/admin" className="text-text-muted hover:text-accent transition-colors">Client Login</Link>
         </div>
 

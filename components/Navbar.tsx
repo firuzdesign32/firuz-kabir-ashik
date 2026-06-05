@@ -61,8 +61,8 @@ export default function Navbar() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className={`text-sm font-medium transition-colors hover:text-accent ${
-                      isActive ? "text-accent" : "text-text-muted"
+                    className={`text-base font-semibold tracking-wide transition-colors hover:text-accent ${
+                      isActive ? "text-accent font-bold" : "text-text/80"
                     }`}
                   >
                     {item.label}

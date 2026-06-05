@@ -41,11 +41,6 @@ export default async function AdminLayout({
               </Link>
             </li>
             <li>
-              <Link href="/admin/case-studies" className="flex items-center gap-3 px-3 py-2 text-text-muted hover:text-white hover:bg-surface-2 rounded-lg transition-colors">
-                <FileText className="w-5 h-5" /> Case Studies
-              </Link>
-            </li>
-            <li>
               <Link href="/admin/products" className="flex items-center gap-3 px-3 py-2 text-text-muted hover:text-white hover:bg-surface-2 rounded-lg transition-colors">
                 <ShoppingBag className="w-5 h-5" /> Store Products
               </Link>
