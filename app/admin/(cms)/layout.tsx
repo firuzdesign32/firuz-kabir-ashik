@@ -12,7 +12,7 @@ export default async function AdminLayout({
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/api/auth/signin");
+    redirect("/admin/login");
   }
 
   if (!['SUPER_ADMIN', 'ADMIN', 'EDITOR'].includes(session.user.role)) {

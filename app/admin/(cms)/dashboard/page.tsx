@@ -1,6 +1,5 @@
 import prisma from '@/lib/prisma';
 
-
 export default async function DashboardPage() {
   const [projectCount, productCount, orderCount] = await Promise.all([
     prisma.portfolio.count(),
