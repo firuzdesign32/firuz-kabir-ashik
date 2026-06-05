@@ -16,6 +16,20 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Please enter an email and password');
         }
 
+        // Auto-provision default super admin if database has no users (e.g. on Hostinger)
+        const userCount = await prisma.user.count();
+        if (userCount === 0) {
+          const defaultHashedPassword = await bcrypt.hash('admin123', 10);
+          await prisma.user.create({
+            data: {
+              email: 'admin@firuzkabirashik.com',
+              name: 'Firuz Kabir Ashik',
+              hashedPassword: defaultHashedPassword,
+              role: 'SUPER_ADMIN',
+            }
+          });
+        }
+
         const user = await prisma.user.findUnique({
           where: { email: credentials.email }
         });
